@@ -9,32 +9,36 @@ import {getContacts} from 'redux/selectors'
 
 
 
-export const ContactList = () => {
-  const contacts = useSelector(getContacts);
-  const filter = useSelector(getFilteredContacts);
+// export const ContactList = () => {
+//   const contacts = useSelector(getContacts);
+//   const filter = useSelector(getFilteredContacts);
   
-    const filtersContacts = (contacts, filter) => {
-      if (!filter) {
-        return contacts;
-      }
-      contacts.filter(contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase())
-      );
-    }
+//     const filtersContacts = (contacts, filter) => {
+//       if (!filter) {
+//         return contacts;
+//       }
+//       contacts.filter(contact =>
+//         contact.name.toLowerCase().includes(filter.toLowerCase())
+//       );
+//     }
   
-  // const value = useSelector(getFilteredContacts);
-  const dispatch = useDispatch();
+//   // const value = useSelector(getFilteredContacts);
+  
     
-     const contactsList = filtersContacts(contacts, filter);
+//      const contactsList = filtersContacts(contacts, filter);
 
-
+export const ContactList = () => { 
+  const items = useSelector(state => state.contacts.items);
+  const filter = useSelector(state => state.contacts.items);
+  const contacts = getContacts(items, filter);
+const dispatch = useDispatch();
     return (
     <div className={styles.contacts}>
       <h2>Contacts</h2>
       <ul>
         {contacts.length === 0 ? false : (
           <>
-            {contactsList.map(contact => {
+            {contacts.map(contact => {
               return (
                 <li key={contact.id}>
                   <p>
@@ -42,8 +46,9 @@ export const ContactList = () => {
                     {contact.number}
                   </p>
                   <button type='button'
-                    onClick={() => 
+                    onClick={() =>
                       dispatch(removeContact(contact.id))}>
+                     
                     X
                   </button>
                 </li>

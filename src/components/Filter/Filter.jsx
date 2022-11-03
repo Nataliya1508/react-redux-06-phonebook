@@ -12,12 +12,16 @@ import { nanoid } from 'nanoid';
   export const Filter = () => {
     // const filterId = nanoid();
     const dispatch = useDispatch();
-    const filter = useSelector(getFilteredContacts);
+    const filter = useSelector(state => state.contacts.filter);
 
+    // const inputChange = e => {
+    //   const changeValue = e.target.value;
+    //   dispatch(changeFilter(changeValue));
+    // };
     const inputChange = e => {
-      const changeValue = e.target.value;
-      dispatch(changeFilter(changeValue));
-    };
+  dispatch(changeFilter(e.currentTarget.value))
+}
+
  const filterId = nanoid();
     return (
       <div className={styles.filterInput}>
