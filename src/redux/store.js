@@ -30,6 +30,7 @@ const persistedReducer = persistReducer(persistConfig, contactsSlice.reducer);
 export const store = configureStore({
       reducer: {
     contacts: persistedReducer,
+   
   },
     // reducer: persistedReducer,
     middleware: getDefaultMiddleware =>

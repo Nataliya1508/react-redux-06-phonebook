@@ -3,7 +3,7 @@
 import { React } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFilteredContacts } from 'redux/selectors';
-import { filterContacts } from 'redux/filterSlice';
+import { changeFilter } from 'redux/slice';
 // import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 import { nanoid } from 'nanoid';
@@ -16,7 +16,7 @@ import { nanoid } from 'nanoid';
 
     const inputChange = e => {
       const changeValue = e.target.value;
-      dispatch(filterContacts(changeValue));
+      dispatch(changeFilter(changeValue));
     };
  const filterId = nanoid();
     return (
