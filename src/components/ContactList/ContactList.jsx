@@ -1,69 +1,40 @@
 import { React } from 'react';
+import ContactListItem from 'components/ContactListItem/ContactListItem'
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 import { getFilteredContacts } from 'redux/selectors';
 import styles from './ContactList.module.css';
-import { removeContact } from 'redux/slice';
-import {getContacts} from 'redux/selectors'
 
 
 
-// export const ContactList = () => {
-//   const contacts = useSelector(getContacts);
-//   const filter = useSelector(getFilteredContacts);
-  
-//     const filtersContacts = (contacts, filter) => {
-//       if (!filter) {
-//         return contacts;
-//       }
-//       contacts.filter(contact =>
-//         contact.name.toLowerCase().includes(filter.toLowerCase())
-//       );
-//     }
-  
-//   // const value = useSelector(getFilteredContacts);
-  
-    
-//      const contactsList = filtersContacts(contacts, filter);
+
 
 export const ContactList = () => { 
-  const items = useSelector(state => state.contacts.items);
-  const filter = useSelector(state => state.contacts.items);
-  const contacts = getContacts(items, filter);
-const dispatch = useDispatch();
+  const contacts = useSelector(state => state.contacts.items);
+  const value = useSelector(getFilteredContacts);
+  
+   const filtersContacts = () => {
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(value)
+    );
+  };
+  const contactsMap = value === '' ? contacts : filtersContacts();
+
+
+
     return (
-    <div className={styles.contacts}>
-      <h2>Contacts</h2>
-      <ul>
-        {contacts.length === 0 ? false : (
-          <>
-            {contacts.map(contact => {
-              return (
-                <li key={contact.id}>
-                  <p>
-                    <span>{contact.name} : </span>
-                    {contact.number}
-                  </p>
-                  <button type='button'
-                    onClick={() =>
-                      dispatch(removeContact(contact.id))}>
-                     
-                    X
-                  </button>
-                </li>
-              );
+     <div className={styles.contacts}>
+      {contactsMap.map(({ id, number, name }) => {
+        return <ContactListItem key={id} id={id} name={name} number={number} />;
       })}
-          </>
-        )}
-      </ul>
     </div>
   );
 };
 
 ContactList.propTypes = {
-    contacts: PropTypes.arrayOf(PropTypes.objectOf(PropTypes.string.isRequired)),
-    // onRemove: PropTypes.func.isRequired,
-}
+  id: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  number: PropTypes.number.isRequired,
+};
 
 export default ContactList;

@@ -7,13 +7,9 @@ export default function App() {
 
   return (
     <>
-     
         <ContactForm />
-     
       <Filter />
         <ContactList />
-        
-  
       </>
   )
   
