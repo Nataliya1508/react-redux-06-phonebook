@@ -1,6 +1,6 @@
 import { React } from 'react';
 import ContactListItem from 'components/ContactListItem/ContactListItem'
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
 import { getFilteredContacts } from 'redux/selectors';
 import styles from './ContactList.module.css';
@@ -31,10 +31,10 @@ export const ContactList = () => {
   );
 };
 
-ContactList.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  number: PropTypes.number.isRequired,
-};
+// ContactList.propTypes = {
+//   id: PropTypes.number.isRequired,
+//   name: PropTypes.string.isRequired,
+//   number: PropTypes.number.isRequired,
+// };
 
 export default ContactList;

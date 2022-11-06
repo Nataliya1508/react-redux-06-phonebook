@@ -1,7 +1,6 @@
 import { React } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeFilter } from 'redux/slice';
-import PropTypes from 'prop-types';
 import styles from './Filter.module.css';
 
 
@@ -21,8 +20,3 @@ import styles from './Filter.module.css';
     <input className={styles.filter} type="text" name="number" value={filter} onChange={inputChange} placeholder='Enter name'/>
   </div>);
 };
-
-Filter.propTypes = {
- 
-  inputChange: PropTypes.func.isRequired,
-}

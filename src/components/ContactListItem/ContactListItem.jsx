@@ -27,7 +27,6 @@ ContactListItem.protoTypes = {
   id: PropTypes.number.isRequired,
   number: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  removeContact: PropTypes.func.isRequired,
 };
 
 export default ContactListItem;
